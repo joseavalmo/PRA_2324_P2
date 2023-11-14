@@ -42,3 +42,31 @@ T BusquedaBinaria_INV(T x, vector<T> v, int ini, int fin){
 		return BusquedaBinaria_INV(x, v, ini, medio-1);
 	}
 }
+
+template <typename T>
+T QuickSort(vector<T> v, int ini, int fin){
+	 if(ini < fin){
+		 int pivot = Partition(v, ini, fin);
+		 QuickSort(v, ini, pivot-1);
+		 QuickSort(v, pivot+1, fin);
+	 }
+}
+
+template <typename T>
+T Partition(vector<T> v, int ini, int fin){
+	vector<T> x = v[fin];
+	int i = ini;
+	for(int j=ini; j < fin-1; j++){
+		if(v[j] <= x){
+			vector<T> aux = v[i];
+			v[i] = v[j];
+			v[j] = aux;
+			i = i+1;
+		}
+	}
+	vector<T> aux = v[i];
+	v[i] = v[fin];
+	v[fin] = v[i];
+
+	return i;
+}
